@@ -30,16 +30,24 @@ colnames(data) = c('V1','V2')
 merge(count(data,'V1'),count(data,'V2'),by=1,all=T) -> absolute
 absolute[is.na(absolute)] <- 0
 absolute$sum = absolute$freq.x + absolute$freq.y
+#the columns of absolute are
+# (V1)  the number of reads (or variable value eg RPKM)
+# (sum) the number of times it was observed
 
 # compute conditional distribution of data values in replicates 1 and 2 given that the value in the other replicate is exactly zero
 merge(count(subset(data,V2==0),'V1'), count(subset(data,V1==0),'V2'), by=1,all=T) -> conditional
 conditional[is.na(conditional)] <- 0
 conditional$sum = conditional$freq.x + conditional$freq.y
+# the columns of conditional are
+# (V1)  the number of reads (or variable value eg RPKM)
+# (sum) the number of times it was observed GIVEN that in the other bioreplicate the value is = 0
 
 subset(merge(absolute, conditional, by=1, all=T), V1>0) -> matr
 matr[is.na(matr)] <- 0
 npIDR=matr$sum.y/matr$sum.x
 names(npIDR) = matr$V1
+# npIDR: number of reads -> probability to see as many reads as you see given than in the other bioreplicate value = 0
+# genes with equal RPKMs or equal number of reads will receive the same npIDR  
 
 if(poolType==1) {
     sPool = apply(data, 1, sum)
