@@ -8,7 +8,8 @@ This repository contains translations of npIDR script (funIDRnpFile.m) by Alex D
 It essentially takes a pooled sample of all replicas and computes
 
 	(a) the frequency of seeing count=x;
-	(b) the frequency of seeing count=x given that in *ALL* other replicas the count is equal to zero
+	(b) the frequency of seeing count=x given that in *ALL* other 
+	    replicas the count is equal to zero
 
 The ratio of the two frequencies is called npIDR. Originally it was designed for two bioreplicates but with 
 the word 'ALL' above it works for any number of them.
