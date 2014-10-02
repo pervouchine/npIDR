@@ -17,4 +17,7 @@ the word 'ALL' above it works for any number of them.
 A few questions remain:
 
 	(1) does it have to be integer frequencies or probabilities? 
-	(2) are matrices in matlab indexed starting from 0 or from 1? If the latter then there will be a shift of 1, where npIDR value of count=2 will be actually taken for the conditional probability of count=1
+	(2) are matrices in matlab indexed starting from 0 or from 1? 
+	    If the latter then there will be a shift of 1, where npIDR 
+	    value of count=2 will be actually taken for the conditional 
+	    probability of count=1
